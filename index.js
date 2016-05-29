@@ -6,14 +6,14 @@ const monthNames = ['','','','','Máj', 'Jún', 'Júl', 'August']
 const dayContainer = {
   display: 'flex',
   flexWrap: 'wrap',
-  width: 710
+  width: 220
 }
 
 const dayStyle = {
   flexGrow: 0,
   flexShrink: 0,
-  width: 100,
-  height: 100,
+  width: 30,
+  height: 30,
   border: '#333 1px solid',
   marginRight: -1,
   marginBottom: -1
@@ -37,11 +37,10 @@ const App = React.createClass({
       let days = Array.from(Array(numOfDays(2016,i)).keys())
       if (i === 5) days = days.filter(i => i >= 27)
       let dayBlocks = days.map(i => <div style={dayStyle}>{i+1}</div>)
-      let firstDayOfWeek = getWeekDay(2016, i, days[0])
+      let firstDayOfWeek = getWeekDay(2016, i, days[0]+1)
       if (firstDayOfWeek > 0) {
-        dayBlocks.unshift(<div style={{width: firstDayOfWeek * 101}}></div>)
+        dayBlocks.unshift(<div style={{width: firstDayOfWeek * 31}}></div>)
       }
-      console.log(2016, i, firstDayOfWeek)
       return <div>
         <div style={monthTitleStyle}>{monthNames[i-1].toUpperCase()}</div>
         <div style={dayContainer}>
