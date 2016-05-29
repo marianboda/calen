@@ -6,20 +6,30 @@ const monthNames = ['','','','','Máj', 'Jún', 'Júl', 'August']
 const dayContainer = {
   display: 'flex',
   flexWrap: 'wrap',
-  width: 220
+  width: 220,
 }
 
 const dayStyle = {
   flexGrow: 0,
   flexShrink: 0,
   width: 30,
-  height: 30,
-  border: '#333 1px solid',
+  height: 21,
+  border: '#999 1px solid',
   marginRight: -1,
-  marginBottom: -1
+  marginBottom: -1,
+  color: '#999',
+  textAlign: 'center',
+  paddingTop: 9,
+  fontSize: 9,
 }
 
-const monthTitleStyle = {}
+const monthTitleStyle = {
+  width: 218,
+  height: 25,
+  textAlign: 'center',
+  paddingTop: 5,
+  color: '#333',
+}
 
 function getWeekDay(year, month, day) {
   let d = new Date(year, month-1, day).getDay()
@@ -35,7 +45,7 @@ const App = React.createClass({
     let monthBlocks = months.map(i => {
 
       let days = Array.from(Array(numOfDays(2016,i)).keys())
-      if (i === 5) days = days.filter(i => i >= 27)
+      if (i === 5) days = days.filter(i => i >= 22)
       let dayBlocks = days.map(i => <div style={dayStyle}>{i+1}</div>)
       let firstDayOfWeek = getWeekDay(2016, i, days[0]+1)
       if (firstDayOfWeek > 0) {
@@ -49,7 +59,6 @@ const App = React.createClass({
       </div>
     })
     return (<div style={{width: '100%'}}>
-      <h1>Kalendár</h1>
       <div>{monthBlocks}</div>
     </div>)
     }
